@@ -45,12 +45,13 @@ console.log(myCar.CalculateTime(1200).toString());
 // 4. Функция деления 2-х объектов-дробей.
 // 5. Функция сокращения объекта-дроби.
 
+/*
 function Fraction(numerator, denominator) {
     this.numerator = numerator;
     this.denominator = denominator;
 }
 
-const firstFraction = new Fraction(2, 4);
+const firstFraction = new Fraction(15, 21);
 const secondFraction = new Fraction(1, 3);
 
 AdditionFractions = function (fr1, fr2) {
@@ -71,13 +72,124 @@ MultiplicationFractions = function (fr1, fr2) {
     console.log(`${resultNumerator} / ${resultDenominator}`);
 }
 
-DivisionFractions = function(fr1, fr2) {
+DivisionFractions = function (fr1, fr2) {
     let resultNumerator = fr1.numerator * fr2.denominator;
-    let resultDenominator = fr2.numerator * fr1.denominator;
+    let resultDenominator = fr1.denominator * fr2.numerator;
     console.log(`${resultNumerator} / ${resultDenominator}`);
+}
+
+ReductionFraction = function (fr1) {
+    if (fr1.numerator <= fr1.denominator) {
+        let divider = 0;
+        for (let i = 1; i <= fr1.numerator; i++) {
+            if (fr1.numerator % i === 0 && fr1.denominator % i === 0)
+                divider = i;
+        }
+        let resultNumerator = fr1.numerator / divider;
+        let resultDenominator = fr1.denominator / divider;
+        console.log(`${resultNumerator} / ${resultDenominator}`);
+    }
+    if (fr1.numerator > fr1.denominator) {
+        let divider = 0;
+        for (let i = 1; i <= fr1.denominator; i++) {
+            if (fr1.denominator % i === 0 && fr1.numerator % i === 0)
+                divider = i;
+        }
+        let resultNumerator = fr1.numerator / divider;
+        let resultDenominator = fr1.denominator / divider;
+        console.log(`${resultNumerator} / ${resultDenominator}`);
+    }
 }
 
 AdditionFractions(firstFraction, secondFraction);
 SubtractionFractions(firstFraction, secondFraction);
 MultiplicationFractions(firstFraction, secondFraction);
 DivisionFractions(firstFraction, secondFraction);
+ReductionFraction(firstFraction);
+*/
+
+// Задание 3
+// Создать объект, описывающий время (часы, минуты, секун-
+// ды), и следующие функции для работы с этим объектом.
+// 1. Функция вывода времени на экран.
+// 2. Функция изменения времени на переданное количество
+// секунд.
+// 3. Функция изменения времени на переданное количество
+// минут.
+// 4. Функция изменения времени на переданное количество
+// часов.
+// Учтите, что в последних 3-х функциях, при изменении одной
+// части времени, может измениться и другая. Например: если ко
+// времени «20:30:45» добавить 30 секунд, то должно получиться
+// «20:31:15», а не «20:30:75».
+
+/*
+function Clock(hours, minutes, seconds) {
+    this.hours = hours;
+    this.minutes = minutes;
+    this.seconds = seconds;
+}
+
+ShowTime = function (myClock) {
+    console.log(`${myClock.hours}:${myClock.minutes}:${myClock.seconds}`);
+}
+
+ChangeSeconds = function (myClock, mySeconds) {
+    let resultSeconds = myClock.seconds + mySeconds;
+    if (resultSeconds > 60) {
+        let tempSeconds = resultSeconds - 60;
+        myClock.minutes++;
+        if (myClock.minutes > 60) {
+            myClock.hours++;
+        }
+        console.log(`${myClock.hours}:${myClock.minutes}:${tempSeconds}`);
+    }
+    else if (resultSeconds === 60) {
+        myClock.seconds = 0;
+        myClock.minutes++;
+        console.log(`${myClock.hours}:${myClock.minutes}:${myClock.seconds}`);
+    }
+    else {
+        console.log(`${myClock.hours}:${myClock.minutes}:${resultSeconds}`);
+    }
+}
+
+ChangeMinutes = function (myClock, myMinutes) {
+    let resultMinutes = myClock.minutes + myMinutes;
+    if (resultMinutes > 60) {
+        let tempMinutes = resultMinutes - 60;
+        myClock.hours++;
+        console.log(`${myClock.hours}:${tempMinutes}:${myClock.seconds}`);
+    }
+    else if (resultMinutes === 60) {
+        myClock.minutes = 0;
+        myClock.hours++;
+        console.log(`${myClock.hours}:${myClock.minutes}:${myClock.seconds}`);
+    }
+    else {
+        console.log(`${myClock.hours}:${resultMinutes}:${myClock.seconds}`);
+    }
+}
+
+ChangeHours = function (myClock, myHours) {
+    let resultHours = myClock.hours + myHours;
+    if (resultHours > 24) {
+        let tempHours = resultHours - 24;
+        console.log(`${tempHours}:${myClock.minutes}:${myClock.seconds}`);
+    }
+    else if (resultHours === 24) {
+        myClock.hours = 0;
+        console.log(`${myClock.hours}:${myClock.minutes}:${myClock.seconds}`);
+    }
+    else {
+        console.log(`${resultHours}:${myClock.minutes}:${myClock.seconds}`);
+    }
+}
+
+const myClock = new Clock(21, 22, 22);
+
+ShowTime(myClock);
+ChangeHours(myClock, 4);
+ChangeMinutes(myClock, 2);
+ChangeSeconds(myClock, 5);
+*/
